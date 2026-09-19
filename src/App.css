@@ -1,0 +1,9 @@
+.dashboard {
+  min-height: 100vh;
+  width: 100%;
+
+  background-image: url('./assets/waguri-bg.jpeg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
