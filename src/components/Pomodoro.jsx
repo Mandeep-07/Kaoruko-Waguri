@@ -81,16 +81,25 @@ function Pomodoro() {
       <div
         className="
           rounded-3xl
-          border border-purple-300/20
-          bg-transparent
+          border
+          border-[var(--theme-border)]
+          bg-[var(--theme-card)]
           px-5 py-5
           text-center
-          backdrop-blur-[2px]
+          backdrop-blur-md
+          shadow-[0_0_25px_rgba(0,0,0,0.15)]
         "
       >
 
         {/* TITLE */}
-        <h2 className="text-xl font-medium tracking-wide text-purple-100">
+        <h2
+          className="
+            text-xl
+            font-medium
+            tracking-wide
+            text-[var(--theme-text)]
+          "
+        >
           Pomodoro Focus
         </h2>
 
@@ -121,7 +130,7 @@ function Pomodoro() {
                 cy="80"
                 r={radius}
                 fill="transparent"
-                stroke="rgba(150, 90, 220, 0.25)"
+                stroke="var(--theme-border)"
                 strokeWidth="9"
               />
 
@@ -131,7 +140,7 @@ function Pomodoro() {
                 cy="80"
                 r={radius}
                 fill="transparent"
-                stroke="rgba(190, 120, 255, 0.25)"
+                stroke="var(--theme-accent)"
                 strokeWidth="13"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
@@ -145,7 +154,7 @@ function Pomodoro() {
                 cy="80"
                 r={radius}
                 fill="transparent"
-                stroke="url(#purpleGradient)"
+                stroke="url(#themeGradient)"
                 strokeWidth="9"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
@@ -153,25 +162,45 @@ function Pomodoro() {
                 className="transition-[stroke-dashoffset] duration-1000 ease-linear"
               />
 
-              {/* Gradient */}
+              {/* Theme gradient */}
               <defs>
                 <linearGradient
-                  id="purpleGradient"
+                  id="themeGradient"
                   x1="0%"
                   y1="0%"
                   x2="100%"
                   y2="100%"
                 >
-                  <stop offset="0%" stopColor="#b987ff" />
-                  <stop offset="50%" stopColor="#d8b4fe" />
-                  <stop offset="100%" stopColor="#9b5cff" />
+                  <stop
+                    offset="0%"
+                    stopColor="var(--theme-accent)"
+                  />
+
+                  <stop
+                    offset="50%"
+                    stopColor="var(--theme-accent-light)"
+                  />
+
+                  <stop
+                    offset="100%"
+                    stopColor="var(--theme-accent-dark)"
+                  />
                 </linearGradient>
               </defs>
 
             </svg>
 
             {/* Time */}
-            <span className="relative z-10 text-[32px] font-light tracking-wide text-purple-100">
+            <span
+              className="
+                relative
+                z-10
+                text-[32px]
+                font-light
+                tracking-wide
+                text-[var(--theme-text)]
+              "
+            >
               {formattedTime}
             </span>
 
@@ -181,57 +210,60 @@ function Pomodoro() {
         {/* BUTTONS */}
         <div className="flex justify-center gap-3">
 
+          {/* START */}
           <button
             onClick={() => setIsRunning(true)}
             className="
               rounded-full
-              bg-purple-200
+              bg-[var(--theme-accent-light)]
               px-6
               py-2
               text-sm
               font-medium
-              text-purple-950
+              text-black
               transition
               hover:scale-105
-              hover:bg-purple-100
+              hover:brightness-110
             "
           >
             {isRunning ? 'RUNNING' : 'START'}
           </button>
 
+          {/* PAUSE */}
           <button
             onClick={() => setIsRunning(false)}
             className="
               rounded-full
               border
-              border-purple-300/20
-              bg-purple-900/20
+              border-[var(--theme-border)]
+              bg-[var(--theme-card)]
               px-5
               py-2
               text-sm
               font-medium
-              text-purple-100
+              text-[var(--theme-text)]
               transition
-              hover:bg-purple-800/30
+              hover:brightness-125
             "
           >
             PAUSE
           </button>
 
+          {/* RESET */}
           <button
             onClick={resetTimer}
             className="
               rounded-full
               border
-              border-purple-300/20
-              bg-purple-900/20
+              border-[var(--theme-border)]
+              bg-[var(--theme-card)]
               px-5
               py-2
               text-sm
               font-medium
-              text-purple-100
+              text-[var(--theme-text)]
               transition
-              hover:bg-purple-800/30
+              hover:brightness-125
             "
           >
             RESET
@@ -240,44 +272,56 @@ function Pomodoro() {
         </div>
 
         {/* MODES */}
-        <div className="mt-4 flex justify-center gap-4 text-[11px] tracking-wide">
+        <div
+          className="
+            mt-4
+            flex
+            justify-center
+            gap-4
+            text-[11px]
+            tracking-wide
+          "
+        >
 
+          {/* FOCUS */}
           <button
             onClick={() => changeMode('focus')}
             className={`
               transition
               ${
                 mode === 'focus'
-                  ? 'text-purple-200'
-                  : 'text-purple-200/50 hover:text-purple-200'
+                  ? 'text-[var(--theme-accent-light)]'
+                  : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-accent-light)]'
               }
             `}
           >
             FOCUS
           </button>
 
+          {/* SHORT BREAK */}
           <button
             onClick={() => changeMode('short')}
             className={`
               transition
               ${
                 mode === 'short'
-                  ? 'text-purple-200'
-                  : 'text-purple-200/50 hover:text-purple-200'
+                  ? 'text-[var(--theme-accent-light)]'
+                  : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-accent-light)]'
               }
             `}
           >
             SHORT BREAK
           </button>
 
+          {/* LONG BREAK */}
           <button
             onClick={() => changeMode('long')}
             className={`
               transition
               ${
                 mode === 'long'
-                  ? 'text-purple-200'
-                  : 'text-purple-200/50 hover:text-purple-200'
+                  ? 'text-[var(--theme-accent-light)]'
+                  : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-accent-light)]'
               }
             `}
           >
